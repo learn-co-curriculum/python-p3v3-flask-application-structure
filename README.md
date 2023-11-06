@@ -1,4 +1,4 @@
-# Building Flask Applications
+# Building Flask Applications : Code-Along
 
 ## Learning Goals
 
