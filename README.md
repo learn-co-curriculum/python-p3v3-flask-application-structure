@@ -66,10 +66,11 @@ library entirely- interacts with this `Flask` instance using WSGI.
 Open `server/app.py` and enter the following code:
 
 ```py
+#!/usr/bin/env python3
+
 from flask import Flask
 
 app = Flask(__name__)
-
 ```
 
 The `Flask` class constructor only requires the name of the primary module or
