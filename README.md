@@ -297,6 +297,32 @@ Try testing the new route by appending a name to the url such as
 </details>
 <br/>
 
+Let's look at another example view that takes a string containing a
+comma-separated list of items as a parameter. The view generates a response that
+includes an h1 heading along with each item in a separate paragraph.
+
+```
+@app.route('/split_items/<string:items>')
+def split_items(items):
+    item_list = items.split(',')
+
+    response = f'<h1>{len(item_list)} items:</h1>'
+
+    for item in items.split(','):
+        response += f'<p>{item}</p>'
+
+    return response
+```
+
+If you restart the server, you can test the new view with:
+[http://127.0.0.1:5555/split_items/apple,banana,pear](http://127.0.0.1:5555/split_items/apple,banana,pear)
+
+The server response is: `<h1>3 items:</h1><p>apple</p><p>banana</p><p>pear</p>`
+
+The browser displays the response as:
+
+![screen print of h1 and 3 paragraphs listing items in string](https://curriculum-content.s3.amazonaws.com/7391/python-p3v3-flask/item_list_response.png)
+
 ### Running the server as a script
 
 We can also run a development server by treating our application module as a
@@ -363,6 +389,18 @@ def index():
 @app.route('/<string:username>')
 def user(username):
     return f'<h1>Profile for {username}</h1>'
+
+@app.route('/split_items/<string:items>')
+def split_items(items):
+    item_list = items.split(',')
+
+    response = f'<h1>{len(item_list)} items:</h1>'
+
+    for item in items.split(','):
+        response += f'<p>{item}</p>'
+
+    return response
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
